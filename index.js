@@ -20,6 +20,11 @@ app.get("/links", async function (req, res) {
   const response = await data.find();
   return res.send(response);
 });
+app.get("/ping", async function (req, res) {
+  return res.status(200).json({
+    message: "pong",
+  });
+});
 
 app.listen(port, async function (err) {
   if (err) {
