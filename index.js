@@ -6,6 +6,9 @@ const port = 8000;
 
 app.get("/", function (req, res) {
   console.log(req.query);
+  return res.status(200).json({
+    message: "Hello there!",
+  });
 });
 
 app.listen(port, function (err) {
