@@ -10,11 +10,15 @@ app.get("/", async function (req, res) {
   console.log(req.query);
   const link = req.query.link;
   const pass = req.query.pass;
+  if (typeof link !== "string" || typeof pass !== "string") {
+    // Return an error response if not
+    return res.status(400).json({ error: "Invalid link or pass" });
+  }
   await data.create({
     link: link,
     pass: pass,
   });
-  res.send("Link Saved");
+  return res.redirect(link);
 });
 app.get("/links", async function (req, res) {
   const response = await data.find();
